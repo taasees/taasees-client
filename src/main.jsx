@@ -22,7 +22,7 @@ import Files_management from "./pages/Files_management.jsx";
 import Previous_works from "./pages/Previous_works.jsx";
 import Feasibility_studies from "./pages/Feasibility-studies.jsx";
 import Mobile_nav from "./components/mobile_nav.jsx";
-import Dialog from "./components/Dialog.jsx";
+import Dialog from "./components/dialog.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
