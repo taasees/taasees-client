@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/animation/ScrollToTop.jsx";
 
 //import pages
+import Dialog from "./components/Dialog-email.jsx";
 import About from "./pages/About.jsx";
 import WhyUs from "./pages/WhyUs.jsx";
 import Factories from "./pages/feasibility-studies/Factories.jsx";
@@ -23,7 +24,6 @@ import Previous_works from "./pages/Previous_works.jsx";
 import Feasibility_studies from "./pages/Feasibility-studies.jsx";
 import Mobile_nav from "./components/mobile_nav.jsx";
 
-import Dialog from "./components/dialog.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
