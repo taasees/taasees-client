@@ -25,6 +25,7 @@ import Feasibility_studies from "./pages/Feasibility-studies.jsx";
 import Mobile_nav from "./components/mobile_nav.jsx";
 
 
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
