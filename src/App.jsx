@@ -141,7 +141,7 @@ function App() {
                     متخصصون في الإستشارات الإدارية لجميع المشاريع داخل دول مجلس
                     التعاون الخليجي
                   </p>
-                  {/* <Link to={""}>اطلب الخدمة</Link> */}
+                  <Link to={""}>اطلب الخدمة</Link>
                 </div>
               </AnimatedContent>
               <div className="img">
