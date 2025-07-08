@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../assets/style/header/header.css";
-import logo from "../assets/images/logo_1.webp";
+import logo from "../assets/images/Logo_1.webp";
 
 export default function Header() {
   const [isSideOpen, setIsSideOpen] = useState(false);
@@ -236,31 +236,31 @@ export default function Header() {
                   <span></span>
                 </summary>
                 <div>
-                <ul>
-                  <li>
-                    <Link to="/factories">المصانع</Link>
-                  </li>
-                  <li>
-                    <Link to="/restaurants">المطاعم</Link>
-                  </li>
-                  <li>
-                    <Link to="/schools">المدارس</Link>
-                  </li>
-                  <li>
-                    <Link to="/farms">المزارع</Link>
-                  </li>
-                  <li>
-                    <Link to="/e-commerce-projects">
-                      مشروعات التجارة الالكترونية
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/medical-sector">القطاع الطبي</Link>
-                  </li>
-                  <li>
-                    <Link to="/other-projects">مشروعات اخرى</Link>
-                  </li>
-                </ul>
+                  <ul>
+                    <li>
+                      <Link to="/factories">المصانع</Link>
+                    </li>
+                    <li>
+                      <Link to="/restaurants">المطاعم</Link>
+                    </li>
+                    <li>
+                      <Link to="/schools">المدارس</Link>
+                    </li>
+                    <li>
+                      <Link to="/farms">المزارع</Link>
+                    </li>
+                    <li>
+                      <Link to="/e-commerce-projects">
+                        مشروعات التجارة الالكترونية
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/medical-sector">القطاع الطبي</Link>
+                    </li>
+                    <li>
+                      <Link to="/other-projects">مشروعات اخرى</Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
