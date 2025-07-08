@@ -1,0 +1,189 @@
+@import "../settings";
+.about-pages {
+  position: relative;
+  width: 100dvw;
+  min-height: 100dvh;
+  background: var(--body-bg-clr-gray);
+  overflow-x: hidden;
+  @include flex(center, flex-start, column, 0.5rem);
+  .headerimg {
+    position: relative;
+    width: 100%;
+    height: clamp(200px, 50dvh, 330px);
+    @include flex(center, center, row, 0rem);
+    overflow: hidden;
+    isolation: isolate;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5); // use opacity or color overlay
+      z-index: 1;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    h1 {
+      width: 100%;
+      text-align: center;
+      font-size: var(--font-h1);
+      font-family: var(--arabic-fm-exb);
+      color: var(--txt-clr-light);
+      position: relative;
+      z-index: 2; // ensures h1 is above the overlay
+    }
+  }
+  .slides {
+    position: relative;
+    width: clamp(200px, 100%, 1320px);
+    padding: 1rem;
+    padding-block: 3rem;
+    height: auto;
+    @include flex(stretch !important, space-evenly, row, calc(1rem + 1vw));
+    flex-wrap: wrap;
+    .slide {
+      width: 100%;
+      position: relative;
+      @include flex(center, center, row, calc(1rem + 1vw));
+      flex-wrap: wrap;
+      &:nth-child(even) {
+        @include flex(center, center, row-reverse, calc(1rem + 1vw));
+      }
+      .img {
+        position: relative;
+        // flex: 0 0 auto;
+        width: clamp(calc(1vw + 300px), 50vw, 600px);
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--border-radius);
+        }
+      }
+      .text {
+        position: relative;
+        // flex: 0 0 auto;
+        width: clamp(300px, 50vw, 600px);
+        @include flex(flex-start, center, column, 1rem);
+        h3 {
+          font-family: var(--arabic-fm-exb);
+          font-size: var(--font-h3);
+          color: var(--txt-clr);
+        }
+        p {
+          font-family: var(--arabic-fm-r);
+          font-size: var(--font-body);
+          color: var(--txt-clr);
+          text-align: justify;
+        }
+      }
+    }
+  }
+  .types {
+    padding: 5rem 0.5rem;
+    width: clamp(200px, 100%, 1320px);
+    @include flex(center, space-evenly, row, calc(1rem + 1vw));
+
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    .type {
+      position: relative !important;
+      width: clamp(300px, 100%, 410px);
+      height: 300px;
+      @include flex(center, center, row, 0rem);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      .text {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 3;
+        padding: 1rem;
+        @include flex(flex-end, flex-start, row, 1rem);
+        h1 {
+          width: 65%;
+          color: var(--txt-clr-light);
+          font-family: var(--arabic-fm-exb);
+          font-size: var(--font-h3);
+        }
+      }
+      .video {
+        position: relative;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--border-radius);
+        }
+      }
+      &:hover {
+        scale: 1.05;
+      }
+    }
+  }
+}
+
+@media (max-width:990px){
+  .types {
+    padding: 5rem 0.5rem;
+    width: clamp(200px, 100%, 1320px);
+    @include flex(center, space-evenly, row, calc(1rem + 1vw));
+
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    .type {
+      position: relative !important;
+      width: clamp(300px, 95%, 400px) !important;
+      height: 300px;
+      @include flex(center, center, row, 0rem);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      .text {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 3;
+        padding: 1rem;
+        @include flex(flex-end, flex-start, row, 1rem);
+        h1 {
+          width: 65%;
+          color: var(--txt-clr-light);
+          font-family: var(--arabic-fm-exb);
+          font-size: var(--font-h3);
+        }
+      }
+      .video {
+        position: relative;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--border-radius);
+        }
+      }
+      &:hover {
+        scale: 1.05;
+      }
+    }
+  }
+}
