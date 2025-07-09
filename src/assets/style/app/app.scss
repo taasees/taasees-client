@@ -19,7 +19,7 @@ body {
       height: 94.5dvh;
       isolation: isolate;
       // transition: all 0.3s ease !important;
-      
+
       .bg-video {
         position: absolute;
         z-index: -1;
@@ -27,7 +27,7 @@ body {
         width: 100%;
         height: 100%;
         @include flex(center, center, row, 0rem);
-        
+
         video {
           width: 100%;
           height: 100%;
@@ -260,7 +260,7 @@ body {
     .feedback {
       width: 100%;
       padding: 1.5rem 1rem;
-      background: linear-gradient(45deg,#30496b,#30b8d2);
+      background: linear-gradient(45deg, #30496b, #30b8d2);
       @include flex(center, center, column, 3rem);
       .feedback-header {
         width: 100%;
@@ -786,7 +786,7 @@ body {
           font-family: var(--arabic-fm-r);
           font-size: var(--font-small);
           @include flex(center, center, row-reverse, 0rem);
-
+          // width: min-content;
           span {
             rotate: 180deg;
           }
@@ -918,6 +918,3 @@ body {
     background-image: url("../../icons/arrow-left.svg");
   }
 }
-
-
-
