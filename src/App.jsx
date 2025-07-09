@@ -19,6 +19,7 @@ import market_growth from "./assets/images/market_growth.webp";
 import paperwork from "./assets/images/paperwork.jpg";
 // Import videos
 import heroVideo from "./assets/videos/herobanner_full.mp4";
+import sharek from "./assets/videos/sharek.mp4";
 import feasibility_studies from "./assets/videos/feasibility_studies.mp4";
 import administrational_consultations from "./assets/videos/administrational_consultations.mp4";
 import files_management from "./assets/videos/files_management.mp4";
@@ -73,6 +74,17 @@ function App() {
       <path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z" />
     </svg>
   );
+  const playVideo = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#EA3323"
+    >
+      <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+    </svg>
+  );
   const fetchAboutByCategory = async () => {
     try {
       const response = await axios.get(
@@ -107,7 +119,32 @@ function App() {
       },
     }),
   };
+  useEffect(() => {
+    const video = document.getElementById("hero-video");
+    if (video) {
+      video.play().catch((err) => {
+        console.warn("Autoplay failed:", err);
+      });
+    }
+  }, []);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const videoRef = useRef(null);
 
+  const handlePlayClick = () => {
+    setIsVideoVisible(true);
+
+    // Wait a moment to ensure video is ready
+    setTimeout(() => {
+      videoRef.current?.play().catch((err) => {
+        console.error("Autoplay failed:", err);
+      });
+    }, 100);
+  };
+
+  const closeVideo = () => {
+    videoRef.current?.pause();
+    setIsVideoVisible(false);
+  };
   return (
     <motion.div
       className="container"
@@ -182,8 +219,8 @@ function App() {
           </SwiperSlide>
         </Swiper>
         <div className="bg-video">
-          <video autoPlay={true} loop muted playsInline controls={false}>
-            <source src={heroVideo} />
+          <video id="hero-video" autoPlay loop muted playsInline>
+            <source src={heroVideo} type="video/mp4" />
           </video>
         </div>
       </main>
@@ -237,8 +274,57 @@ function App() {
         <AnimatedContent delay={0.2} duration={1.2}>
           <div className="thoumbnail">
             <img src={video_img} alt="" />
+            <div className="playbutton" to="#" onClick={handlePlayClick}>
+              <span>{playVideo}</span>
+            </div>
           </div>
         </AnimatedContent>
+        {isVideoVisible && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.85)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 99999999,
+            }}
+            onClick={closeVideo}
+          >
+            <video
+              ref={videoRef}
+              // autoPlay
+              controls
+              // muted
+              // playsInline
+              style={{ maxWidth: "90%", maxHeight: "90%" }}
+            >
+              <source src={sharek} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Close button */}
+            <button
+              onClick={closeVideo}
+              style={{
+                position: "absolute",
+                top: "1.5rem",
+                right: "0rem",
+                fontSize: "2rem",
+                background: "none",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              &times;
+            </button>
+          </div>
+        )}
       </section>
       <div className="count">
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>

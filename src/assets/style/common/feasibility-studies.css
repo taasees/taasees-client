@@ -190,9 +190,13 @@
 .about-pages .slides .slide .img {
   position: relative;
   width: clamp(1vw + 300px, 50vw, 600px);
+  max-height: 350px;
   overflow: hidden;
+  margin-bottom: auto;
 }
 .about-pages .slides .slide .img img {
+  position: relative;
+  max-height: 350px;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
