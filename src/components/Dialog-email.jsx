@@ -24,7 +24,6 @@ export default function Dialog() {
     name: "",
     email: "",
     phone: "",
-    request: "طالب تواصل من ",
   });
 
   const handleChange = (field, value) => {
@@ -79,7 +78,6 @@ export default function Dialog() {
         name: "",
         email: "",
         phone: "",
-        request: "طالب تواصل من ",
       });
     } catch (error) {
       toast.error("فشل في إرسال البيانات");
