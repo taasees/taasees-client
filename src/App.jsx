@@ -183,7 +183,7 @@ function App() {
                 </div>
               </AnimatedContent>
               <div className="img">
-                <img  src={img1} alt="" />
+                <img src={img1} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -199,7 +199,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img  src={img2} alt="" />
+                <img src={img2} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -214,7 +214,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img  src={img3} alt="" />
+                <img src={img3} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -330,9 +330,7 @@ function App() {
       <div className="count">
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="numbers">
-            <span>
-              <CountUp from={0} to={1150} duration={2} />+
-            </span>
+            <span>1150+</span>
             <p>دراسات الجدوى</p>
           </div>
         </AnimatedContent>
@@ -343,9 +341,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="numbers">
-            <span>
-              <CountUp from={0} to={28} duration={2} />+
-            </span>
+            <span>28+</span>
             <p>استشاري مميز</p>
           </div>
         </AnimatedContent>
@@ -356,9 +352,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="numbers">
-            <span>
-              <CountUp from={0} to={180} duration={2} />+
-            </span>
+            <span>180+</span>
             <p>خدمات استشارية</p>
           </div>
         </AnimatedContent>
@@ -370,7 +364,7 @@ function App() {
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="numbers">
             <span>
-              <CountUp from={0} to={500} duration={2} />+
+            500+
             </span>
             <p>إستشارات إدارية دورية</p>
           </div>
