@@ -834,7 +834,8 @@ body {
           font-family: var(--arabic-fm-r);
           font-size: var(--font-small);
           @include flex(center, center, row-reverse, 0rem);
-          // width: min-content;
+          width: min-content;
+          text-align: center;
           span {
             rotate: 180deg;
           }

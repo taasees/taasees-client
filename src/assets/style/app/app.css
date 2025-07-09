@@ -1073,6 +1073,9 @@ body .dialog.open .contact {
     justify-content: center;
     flex-direction: row-reverse;
     gap: 0rem;
+    width: -moz-min-content;
+    width: min-content;
+    text-align: center;
   }
   .mobile_nav ul a p span,
   .mobile_nav ul li p span {
