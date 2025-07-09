@@ -868,8 +868,8 @@ body {
       background: var(--body-bg-clr);
       padding: 1rem;
       bottom: 0;
-      border-top-left-radius: var(--border-radius);
-      border-top-right-radius: var(--border-radius);
+      border-top-left-radius: var(--border-radius2);
+      border-top-right-radius: var(--border-radius2);
       @include flex(flex-start, flex-start, column, 1rem);
       box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
       pointer-events: none;

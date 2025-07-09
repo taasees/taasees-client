@@ -191,11 +191,11 @@ export default function Mobile_nav() {
         ref={moreServeciesRef}
         className={`moreServecies ${isSideOpen ? "show" : "hide"}`}
       >
-        <div className="top">
+        {/* <div className="top">
           <span className="close-moreServecies" onClick={toggleSidebar}>
             {close}
           </span>
-        </div>
+        </div> */}
         <ul>
           <li>
             <Link onClick={toggleSidebar} to={"/feasibility-studies"}>
