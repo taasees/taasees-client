@@ -34,7 +34,7 @@ function App() {
     const fetchFont = async () => {
       try {
         const res = await axios.get(
-          "https://jadwa-study-backend.netlify.app/.netlify/functions/app/fonts/latest"
+          "https://shark-consulting-net.onrender.com/fonts/latest"
         );
         const { fontFamily, fontStyles } = res.data;
         setSelectedFont(fontFamily);
@@ -88,7 +88,7 @@ function App() {
   const fetchAboutByCategory = async () => {
     try {
       const response = await axios.get(
-        `https://jadwa-study-backend.netlify.app/.netlify/functions/app/question`
+        `https://shark-consulting-net.onrender.com/question`
       );
       return response.data; // expecting array of about cards
     } catch (err) {
