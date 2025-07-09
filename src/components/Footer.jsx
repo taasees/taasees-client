@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
           <div className="design">
             <p>
-              تم التصميم بواسطة
+              {/* تم التصميم بواسطة */}
               <Link to={"/"}>{/* hussam shannan */}</Link>
             </p>
           </div>
