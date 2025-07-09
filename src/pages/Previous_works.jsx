@@ -82,10 +82,6 @@ export default function Previous_works() {
               <p>{about.topSubtitle}</p>
             </div>
 
-            <div className="title">
-              <h2>{about.sectionTitle}</h2>
-            </div>
-
             <div className="img" style={{ position: "relative" }}>
               {about.img && <img src={about.img} alt={about.sectionTitle} />}
             </div>

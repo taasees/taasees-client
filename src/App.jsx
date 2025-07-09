@@ -107,18 +107,7 @@ function App() {
       }
     });
   }, []);
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    }),
-  };
+
   useEffect(() => {
     const video = document.getElementById("hero-video");
     if (video) {
@@ -144,6 +133,18 @@ function App() {
   const closeVideo = () => {
     videoRef.current?.pause();
     setIsVideoVisible(false);
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    }),
   };
   return (
     <motion.div
