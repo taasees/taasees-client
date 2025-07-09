@@ -51,13 +51,13 @@ export default function Previous_works() {
     }),
   };
   return (
-    <motion.div
+    <div
       className="about-pages"
       dir="auto"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1.3 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
+      // transition={{ duration: 1.3 }}
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
@@ -92,6 +92,6 @@ export default function Previous_works() {
           </motion.div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
