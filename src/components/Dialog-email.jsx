@@ -170,10 +170,11 @@ export default function Dialog() {
           <input
             type="tel"
             value={formData.phone}
-            onChange={(value) => handleChange("phone", value)}
+            onChange={(e) => handleChange("phone", e.target.value)}
             required
             placeholder="أدخل رقم الجوال للتواصل"
             dir="ltr"
+            autoComplete="tel"
           />
         </label>
 
