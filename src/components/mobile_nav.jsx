@@ -159,7 +159,7 @@ export default function Mobile_nav() {
   return (
     <nav className="mobile_nav">
       <ul>
-        <Link to={"/"} onClick={toggleSidebar}>
+        <Link to={"/"}>
           <span>{home}</span>
           <p>الرئيسية</p>
         </Link>
