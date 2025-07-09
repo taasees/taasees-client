@@ -24,7 +24,7 @@ export default function Schools() {
   const fetchSlidesByCategory = async (category) => {
     try {
       const response = await axios.get(
-        `https://jadwa-study-backend.netlify.app/.netlify/functions/app/slides/category/${category}`
+        `https://shark-consulting-net.onrender.com/slides/category/${category}`
       );
       return response.data; // slides array
     } catch (err) {

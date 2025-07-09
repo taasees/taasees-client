@@ -66,7 +66,7 @@ export default function Dialog() {
     try {
       const response = await axios.post(
         // "http://localhost:5005/email/send",
-        "https://jadwa-study-backend.netlify.app/.netlify/functions/app/email/send",
+        "https://shark-consulting-net.onrender.com/email/send",
 
         formData
       );

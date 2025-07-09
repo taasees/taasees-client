@@ -29,7 +29,7 @@ export default function WhyUs() {
   const fetchAboutByCategory = async (category) => {
     try {
       const response = await axios.get(
-        `https://jadwa-study-backend.netlify.app/.netlify/functions/app/category/${category}`
+        `https://shark-consulting-net.onrender.com/category/${category}`
       );
       return response.data; // expecting array of about cards
     } catch (err) {
