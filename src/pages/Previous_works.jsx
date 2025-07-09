@@ -51,7 +51,6 @@ export default function Previous_works() {
     }),
   };
   return (
-    <AnimatePresence>
     <motion.div
       className="about-pages"
       dir="auto"
@@ -94,6 +93,5 @@ export default function Previous_works() {
         ))}
       </div>
     </motion.div>
-    </AnimatePresence>
   );
 }

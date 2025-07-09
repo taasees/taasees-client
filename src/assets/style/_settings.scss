@@ -119,4 +119,5 @@
   interpolate-size: allow-keywords !important;
   transition-behavior: allow-discrete !important;
   color: var(--txt-clr);
+  will-change: opacity !important;
 }
