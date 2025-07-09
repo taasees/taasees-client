@@ -142,7 +142,7 @@ export default function Dialog() {
             رقم الجوال للتواصل <span>*</span>
           </p>
 
-          <PhoneInput
+          {/* <PhoneInput
             autocompleteSearch
             country={"qa"}
             value={formData.phone}
@@ -166,6 +166,14 @@ export default function Dialog() {
               left: "0px",
               right: "unset",
             }}
+          /> */}
+          <input
+            type="tel"
+            value={formData.phone}
+            onChange={(value) => handleChange("phone", value)}
+            required
+            placeholder="أدخل رقم الجوال للتواصل"
+            dir="ltr"
           />
         </label>
 
