@@ -183,7 +183,7 @@ function App() {
                 </div>
               </AnimatedContent>
               <div className="img">
-                <img loading="lazy" src={img1} alt="" />
+                <img  src={img1} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -199,7 +199,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img loading="lazy" src={img2} alt="" />
+                <img  src={img2} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -214,7 +214,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img loading="lazy" src={img3} alt="" />
+                <img  src={img3} alt="" />
               </div>
             </div>
           </SwiperSlide>
