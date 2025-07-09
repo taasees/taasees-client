@@ -78,7 +78,7 @@ export default function Previous_works() {
             variants={cardVariants}
           >
             <div className="top">
-              <span>{about.topTitle}</span>
+              {/* <span>{about.topTitle}</span> */}
               <p>{about.topSubtitle}</p>
             </div>
 
