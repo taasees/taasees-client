@@ -612,7 +612,7 @@ body {
       label {
         width: 100%;
         @include flex(flex-start, flex-start, column, 1rem);
-
+        z-index: 2;
         input {
           width: 100%;
           padding: 0.8rem 0.5rem;

@@ -818,6 +818,7 @@ body .dialog .contact label {
   justify-content: flex-start;
   flex-direction: column;
   gap: 1rem;
+  z-index: 2;
 }
 body .dialog .contact label input {
   width: 100%;
