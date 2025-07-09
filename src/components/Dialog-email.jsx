@@ -7,7 +7,6 @@ import axios from "axios";
 import { isValidPhoneNumber } from "libphonenumber-js";
 
 export default function Dialog() {
-  const [isOpen, setIsOpen] = useState(true);
   function handleClose() {
     const dialog = document.querySelector(".dialog");
     if (dialog) {
@@ -20,7 +19,6 @@ export default function Dialog() {
   const handleOutsideClick = () => {
     handleClose(); // close dialog
   };
-  
 
   const [formData, setFormData] = useState({
     name: "",
@@ -133,7 +131,7 @@ export default function Dialog() {
             البريد الإلكتروني <span>*</span>
           </p>
           <input
-            type="text"
+            type="email"
             name="email"
             value={formData.email}
             placeholder="أدخل بريدك الإلكتروني"
@@ -145,7 +143,9 @@ export default function Dialog() {
           <p>
             رقم الجوال للتواصل <span>*</span>
           </p>
+
           <PhoneInput
+            autocompleteSearch
             country={"qa"}
             value={formData.phone}
             onChange={(value) => handleChange("phone", value)}
@@ -154,6 +154,11 @@ export default function Dialog() {
               paddingLeft: "48px",
               textAlign: "left",
               direction: "ltr",
+            }}
+            inputProps={{
+              autoComplete: "tel",
+              name: "phone",
+              required: true,
             }}
             placeholder="أدخل رقم الجوال للتواصل"
             containerStyle={{

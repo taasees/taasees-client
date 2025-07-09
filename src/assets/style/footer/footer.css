@@ -250,7 +250,8 @@ footer .desktop .bottom .design p a {
 footer .mobile {
   width: 100%;
   position: relative;
-  padding: 2rem;
+  padding: 0.5rem;
+  padding-block: 2rem;
   background: var(--primary-clr);
   display: flex;
   align-items: center;
@@ -267,11 +268,12 @@ footer .mobile .design {
 footer .mobile .copyright {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: row;
   gap: 0rem;
 }
 footer .mobile .copyright p {
+  font-size: var(--font-small);
   color: var(--txt-clr-light);
 }
 footer .mobile .copyright p span {

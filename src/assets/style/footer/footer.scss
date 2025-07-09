@@ -3,6 +3,7 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+
   .desktop {
     position: relative;
     width: 100%;
@@ -109,7 +110,8 @@ footer {
   .mobile {
     width: 100%;
     position: relative;
-    padding: 2rem;
+    padding: 0.5rem;
+    padding-block: 2rem;
     background: var(--primary-clr);
     @include flex(center, flex-start, column, 1rem);
     .copyright,
@@ -119,8 +121,9 @@ footer {
       text-align: center;
     }
     .copyright {
-      @include flex(center, flex-end, row, 0rem);
+      @include flex(center, center, row, 0rem);
       p {
+        font-size: var(--font-small);
         color: var(--txt-clr-light);
         span {
           color: var(--txt-clr-navy);

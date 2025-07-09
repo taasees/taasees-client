@@ -1,8 +1,13 @@
-import { React, useState } from "react";
+import { React, useState, useRef, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+
 export default function Mobile_nav() {
+  const [isSideOpen, setIsSideOpen] = useState(false);
+  const moreServeciesRef = useRef(null);
+  const toggleSidebar = () => setIsSideOpen((prev) => !prev);
   const [showMoreServices, setShowMoreServices] = useState(false);
+
   function openDialog() {
     const dialog = document.querySelector(".dialog");
     if (dialog) {
@@ -12,13 +17,23 @@ export default function Mobile_nav() {
       }, 10); // slight delay to allow reflow
     }
   }
-
-
-  
-
-  const toggleMoreServices = () => {
-    setShowMoreServices((prev) => !prev);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isSideOpen &&
+        moreServeciesRef.current &&
+        !moreServeciesRef.current.contains(event.target)
+      ) {
+        setIsSideOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isSideOpen]);
 
   const home = (
     <svg
@@ -144,11 +159,11 @@ export default function Mobile_nav() {
   return (
     <nav className="mobile_nav">
       <ul>
-        <Link to={"/"}>
+        <Link to={"/"} onClick={toggleSidebar}>
           <span>{home}</span>
           <p>الرئيسية</p>
         </Link>
-        <li className="open-moreServecies" onClick={toggleMoreServices}>
+        <li className="open-moreServecies" onClick={toggleSidebar}>
           <span>{services}</span>
           <p>
             خدماتنا <span>{arrowDown}</span>
@@ -160,34 +175,47 @@ export default function Mobile_nav() {
         </Link>
         <Link onClick={openDialog}>
           <span>{chat}</span>
-          <p>تواصل</p>
+          <p>طلب تواصل</p>
         </Link>
         <Link
           to="https://wa.me/97455225488?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={toggleSidebar}
         >
           <span>{whatsApp}</span>
           <p>WhatsApp</p>
         </Link>
       </ul>
-      <div className={`moreServecies ${showMoreServices ? "show" : "hide"}`}>
+      <div
+        ref={moreServeciesRef}
+        className={`moreServecies ${isSideOpen ? "show" : "hide"}`}
+      >
         <div className="top">
-          <span className="close-moreServecies" onClick={toggleMoreServices}>
+          <span className="close-moreServecies" onClick={toggleSidebar}>
             {close}
           </span>
         </div>
         <ul>
           <li>
-            <Link to={"/feasibility-studies"}>دراسات الجدوى</Link>
+            <Link onClick={toggleSidebar} to={"/feasibility-studies"}>
+              دراسات الجدوى
+            </Link>
             <span>{clipboard}</span>
           </li>
           <li>
-            <Link to={"/Administrational-consultations"}>إستشارات إدارية</Link>
+            <Link
+              onClick={toggleSidebar}
+              to={"/Administrational-consultations"}
+            >
+              إستشارات إدارية
+            </Link>
             <span>{briefcase}</span>
           </li>
           <li>
-            <Link to={"/files-management"}>إدارة الملفات</Link>
+            <Link onClick={toggleSidebar} to={"/files-management"}>
+              إدارة الملفات
+            </Link>
             <span>{folder}</span>
           </li>
         </ul>
