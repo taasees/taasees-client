@@ -183,7 +183,7 @@ function App() {
                 </div>
               </AnimatedContent>
               <div className="img">
-                <img src={img1} alt="" />
+                <img loading="lazy" src={img1} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -199,7 +199,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img src={img2} alt="" />
+                <img loading="lazy" src={img2} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -214,7 +214,7 @@ function App() {
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
-                <img src={img3} alt="" />
+                <img loading="lazy" src={img3} alt="" />
               </div>
             </div>
           </SwiperSlide>
@@ -274,7 +274,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent delay={0.2} duration={1.2}>
           <div className="thoumbnail">
-            <img src={video_img} alt="" />
+            <img loading="lazy" src={video_img} alt="" />
             <div className="playbutton" to="#" onClick={handlePlayClick}>
               <span>{playVideo}</span>
             </div>
@@ -338,7 +338,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="market_growth">
-            <img src={market_growth} alt="" />
+            <img loading="lazy" src={market_growth} alt="" />
           </div>
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
@@ -351,7 +351,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="market_growth">
-            <img src={market_growth} alt="" />
+            <img loading="lazy" src={market_growth} alt="" />
           </div>
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
@@ -364,7 +364,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="market_growth">
-            <img src={market_growth} alt="" />
+            <img loading="lazy" src={market_growth} alt="" />
           </div>
         </AnimatedContent>
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
@@ -488,7 +488,7 @@ function App() {
       </div>
 
       <div className="paperwork">
-        <img src={paperwork} alt="" />
+        <img loading="lazy" src={paperwork} alt="" />
         <AnimatedContent threshold={0.3} delay={0.2} duration={1.2}>
           <h2>نعرض عليكم اكثر الاسئلة شيوعاً من عملائنا الكرام</h2>
         </AnimatedContent>
