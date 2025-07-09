@@ -7,7 +7,7 @@ import "../assets/style/common/aboutPages.css";
 import AnimatedContent from "../components/AnimatedContent";
 import axios from "axios";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 export default function Previous_works() {
   const path = window.location.pathname; // e.g. "/e-commerce-projects"
   const lastSegment =
@@ -51,13 +51,14 @@ export default function Previous_works() {
     }),
   };
   return (
-    <div
+    <AnimatePresence>
+    <motion.div
       className="about-pages"
       dir="auto"
-      // initial={{ opacity: 0 }}
-      // animate={{ opacity: 1 }}
-      // exit={{ opacity: 0 }}
-      // transition={{ duration: 1.3 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.3 }}
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
@@ -92,6 +93,7 @@ export default function Previous_works() {
           </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
