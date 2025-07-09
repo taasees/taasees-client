@@ -226,6 +226,7 @@
 }
 .about-pages .cards > .card .top span,
 .about-pages .cards > .card .top p {
+  text-align: center;
   transition: color 0.3s ease;
 }
 .about-pages .cards > .card .title h2 {
