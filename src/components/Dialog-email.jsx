@@ -52,10 +52,10 @@ export default function Dialog() {
       return false;
     }
 
-    if (!isValidPhoneNumber("+" + phone)) {
-      toast.error("رقم الهاتف غير صالح");
-      return false;
-    }
+    // if (!isValidPhoneNumber("+" + phone)) {
+    //   toast.error("رقم الهاتف غير صالح");
+    //   return false;
+    // }
 
     return true;
   };
