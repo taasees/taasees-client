@@ -4,7 +4,7 @@ import logo from "../assets/images/Logo_1.webp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
@@ -62,7 +62,7 @@ export default function Footer() {
             </div>
           </motion.div>
         </div>
-        <motion.div
+        {/* <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -77,13 +77,13 @@ export default function Footer() {
           </div>
           <div className="design">
             <p>
-              {/* تم التصميم بواسطة */}
-              <Link to={"/"}>{/* hussam shannan */}</Link>
+              تم التصميم بواسطة 
+              <Link to={"/"}> hussam shannan </Link>
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
-      <div className="mobile">
+      {/* <div className="mobile">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -96,15 +96,15 @@ export default function Footer() {
             <span> شارِك للإستشارات </span>. جميع الحقوق محفوظة
           </p>
         </motion.div>
-        {/* <div className="design">
+        <div className="design">
           <p>
             تم التصميم بواسطة
             <Link to={"https://www.linkedin.com/in/hussam-shannan-47071b291/"}>
               hussam shannan
             </Link>
           </p>
-        </div> */}
-      </div>
+        </div> 
+      </div>  */}
     </footer>
   );
 }
