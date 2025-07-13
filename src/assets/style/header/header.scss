@@ -87,6 +87,7 @@
               cursor: pointer;
               a {
                 color: var(--txt-clr-light);
+                width: 100%;
               }
               &:hover {
                 border-left: 2px solid var(--primary-clr);

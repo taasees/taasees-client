@@ -221,6 +221,7 @@
 }
 .main_header > nav > ul > li .droplist ul li a {
   color: var(--txt-clr-light);
+  width: 100%;
 }
 .main_header > nav > ul > li .droplist ul li:hover {
   border-left: 2px solid var(--primary-clr);
