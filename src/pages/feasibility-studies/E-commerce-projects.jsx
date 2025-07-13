@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 //improt images
 import paperwork from "../../assets/images/paperwork.jpg";
@@ -32,6 +32,9 @@ export default function E_commerce_projects() {
       return [];
     }
   };
+
+  const savedMenu = localStorage.getItem("menuTxt");
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
   return (
     <motion.div
       className="about-pages"
@@ -43,7 +46,7 @@ export default function E_commerce_projects() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>دراسات جدوى مشروعات التجارة الالكترونية</h1>
+          <h1>دراسات جدوى {menuTxt.ecommerce}</h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>

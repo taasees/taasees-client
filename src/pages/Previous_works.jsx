@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 //improt images
 import paperwork from "../assets/images/paperwork.jpg";
@@ -50,6 +50,8 @@ export default function Previous_works() {
       },
     }),
   };
+  const savedMenu = localStorage.getItem("menuTxt");
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
   return (
     <motion.div
       className="about-pages"
@@ -61,7 +63,7 @@ export default function Previous_works() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>سابقة الأعمال</h1>
+          <h1>{menuTxt.prevWork}</h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>

@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 //improt images
 import paperwork from "../assets/images/paperwork.jpg";
@@ -37,6 +37,9 @@ export default function WhyUs() {
       return [];
     }
   };
+  const savedMenu = localStorage.getItem("menuTxt");
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
+  
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
@@ -60,7 +63,7 @@ export default function WhyUs() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>لماذا شارِك للإستشارات؟</h1>
+          <h1>{menuTxt.whyUs}</h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>

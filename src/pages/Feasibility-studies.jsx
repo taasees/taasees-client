@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 //improt images
 import paperwork from "../assets/images/paperwork.jpg";
@@ -14,6 +14,8 @@ import "../assets/style/common/feasibility-studies.css";
 import AnimatedContent from "../components/AnimatedContent";
 import { motion } from "framer-motion";
 export default function Feasibility_studies() {
+  const savedMenu = localStorage.getItem("menuTxt");
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
   return (
     <motion.div
       className="about-pages"
@@ -25,7 +27,7 @@ export default function Feasibility_studies() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>دراسات الجدوى</h1>
+          <h1>{menuTxt.studies}</h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>

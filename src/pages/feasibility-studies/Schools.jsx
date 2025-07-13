@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 //improt images
 import paperwork from "../../assets/images/paperwork.jpg";
@@ -32,6 +32,8 @@ export default function Schools() {
       return [];
     }
   };
+  const savedMenu = localStorage.getItem("menuTxt");
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
   return (
     <motion.div
       className="about-pages"
@@ -43,7 +45,7 @@ export default function Schools() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>دراسات جدوى المدارس</h1>
+          <h1>دراسات جدوى {menuTxt.schools}</h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>
