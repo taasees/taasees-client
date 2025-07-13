@@ -101,7 +101,9 @@ export default function Header() {
   }, []);
   async function getMenu() {
     try {
-      const response = await axios.get("http://localhost:5005/menu/");
+      const response = await axios.get(
+        "https://shark-consulting-net.onrender.com/menu/"
+      );
 
       if (response.status === 200 || response.status === 201) {
         const menuData = response.data.menu;
