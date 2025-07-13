@@ -131,7 +131,7 @@ export default function Header() {
             <Link to="/">{menuTxt.home}</Link>
           </li>
           <li>
-            <p>عنا</p>
+            <p>{menuTxt.aboutLabel}</p>
             <span>{downArrow}</span>
             <div className="droplist">
               <ul>
@@ -145,7 +145,7 @@ export default function Header() {
             </div>
           </li>
           <li>
-            <Link to={"/feasibility-studies"}>دراسات الجدوى</Link>
+            <Link to={"/feasibility-studies"}>{menuTxt.studies}</Link>
             <span>{downArrow}</span>
             <div className="droplist">
               <ul dir="auto">
