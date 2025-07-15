@@ -317,6 +317,12 @@ body .container section .card .text {
   isolation: isolate;
   overflow: hidden;
 }
+body .container section .card .text p,
+body .container section .card .text h1 {
+  width: 100%;
+  width: 100%;
+  transition: color 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+}
 body .container section .card .text h1 {
   font-size: var(--font-h4);
   font-family: var(--arabic-fm-exb);
@@ -359,7 +365,8 @@ body .container section .card .text::before {
 body .container section .card:hover {
   transform: translateY(-0.5rem);
 }
-body .container section .card:hover .text {
+body .container section .card:hover .text h1,
+body .container section .card:hover .text p {
   color: var(--txt-clr-light);
 }
 body .container section .card:hover .text::after, body .container section .card:hover .text::before {

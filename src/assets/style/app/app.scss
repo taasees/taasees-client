@@ -163,6 +163,12 @@ body {
           transition: color 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
           isolation: isolate;
           overflow: hidden;
+          p,
+          h1 {
+            width: 100%;
+            width: 100%;
+            transition: color 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+          }
           h1 {
             font-size: var(--font-h4);
             font-family: var(--arabic-fm-exb);
@@ -206,7 +212,10 @@ body {
         &:hover {
           transform: translateY(-0.5rem);
           .text {
-            color: var(--txt-clr-light);
+            h1,
+            p {
+              color: var(--txt-clr-light);
+            }
             &::after,
             &::before {
               opacity: 1;
