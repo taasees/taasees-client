@@ -172,7 +172,7 @@ function App() {
             };
             videoEl.addEventListener("loadeddata", onLoadedData);
           }
-        }, 500);
+        }, 200);
       }
     };
 
