@@ -157,7 +157,7 @@ export default function Mobile_nav() {
     </svg>
   );
   const savedMenu = localStorage.getItem("menuTxt");
-  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
+  const menuTxt = savedMenu ? JSON.parse(savedMenu) : {};
   return (
     <nav className="mobile_nav">
       <ul>

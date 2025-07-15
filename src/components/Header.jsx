@@ -2,7 +2,7 @@ import { React, useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/style/header/header.css";
 import logo from "../assets/images/Logo_1.webp";
-import axios from "axios";
+import axios from "../axiosInstance";
 export default function Header() {
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -102,7 +102,7 @@ export default function Header() {
   async function getMenu() {
     try {
       const response = await axios.get(
-        "https://shark-consulting-net.onrender.com/menu/"
+        "/menu/"
       );
 
       if (response.status === 200 || response.status === 201) {

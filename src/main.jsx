@@ -11,7 +11,7 @@ import Dialog from "./components/Dialog-email.jsx";
 import About from "./pages/About.jsx";
 import WhyUs from "./pages/WhyUs.jsx";
 import Factories from "./pages/feasibility-studies/Factories.jsx";
-import Restaurants from "./pages/feasibility-studies/restaurants.jsx";
+import Restaurants from "./pages/feasibility-studies/Restaurants.jsx";
 import Schools from "./pages/feasibility-studies/Schools.jsx";
 import Farms from "./pages/feasibility-studies/Farms.jsx";
 import E_commerce_projects from "./pages/feasibility-studies/E-commerce-projects.jsx";
@@ -22,10 +22,12 @@ import Files_management from "./pages/Files_management.jsx";
 import Previous_works from "./pages/Previous_works.jsx";
 import Feasibility_studies from "./pages/Feasibility-studies.jsx";
 import Mobile_nav from "./components/mobile_nav.jsx";
+import Loading from "./components/loading.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <Loading />
       <Header />
       <ScrollToTop />
       <Routes>

@@ -24,7 +24,7 @@ import feasibility_studies from "./assets/videos/feasibility_studies.mp4";
 import administrational_consultations from "./assets/videos/administrational_consultations.mp4";
 import files_management from "./assets/videos/files_management.mp4";
 import { motion } from "framer-motion";
-import axios from "axios";
+import axios from "./axiosInstance";
 function App() {
   const [aboutCards, setAboutCards] = useState([]);
 
@@ -96,6 +96,8 @@ function App() {
       return [];
     }
   };
+  const [content, setContent] = useState({});
+
   useEffect(() => {
     fetchAboutByCategory().then((data) => {
       if (Array.isArray(data) && data.length > 0) {
@@ -106,16 +108,28 @@ function App() {
         setAboutCards(normalized);
       }
     });
+    // const fetchContent = async () => {
+    //   try {
+    //     const response = await axios.get("/textContent");
+    //     setContent(response.data.data);
+    //     console.log(response.data.data);
+    //   } catch (err) {
+    //     setError(err.response?.data?.error || err.message);
+    //     setContent(null);
+    //   }
+    // };
+
+    // fetchContent();
   }, []);
 
-  useEffect(() => {
-    const video = document.getElementById("hero-video");
-    if (video) {
-      video.play().catch((err) => {
-        console.warn("Autoplay failed:", err);
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const video = document.getElementById("hero-video");
+  //   if (video) {
+  //     video.play().catch((err) => {
+  //       console.warn("Autoplay failed:", err);
+  //     });
+  //   }
+  // }, []);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const videoRef = useRef(null);
 
@@ -134,6 +148,36 @@ function App() {
     videoRef.current?.pause();
     setIsVideoVisible(false);
   };
+  const [Hero, setHero] = useState({});
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await axios.get("/textContent");
+        setContent(response.data.data);
+        const response2 = await axios.get("/hero");
+        setHero(response2.data.data);
+        console.log(response2.data.data);
+      } catch (err) {
+        setContent(null);
+      } finally {
+        setTimeout(() => {
+          const videoEl = document.getElementById("hero_video");
+          if (videoEl) {
+            videoEl.load(); // Reload the new source
+            const onLoadedData = () => {
+              videoEl.play().catch((err) => {
+                console.error("Auto-play failed:", err);
+              });
+              videoEl.removeEventListener("loadeddata", onLoadedData);
+            };
+            videoEl.addEventListener("loadeddata", onLoadedData);
+          }
+        }, 500);
+      }
+    };
+
+    fetchContent();
+  }, []);
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
@@ -173,14 +217,17 @@ function App() {
           <SwiperSlide>
             <div className="swipe-image">
               <AnimatedContent delay={0.2} duration={1.2}>
-                <div className="text">
-                  <h2>أطلق إمكانيات شركتك بأفضل الحلول الإدارية</h2>
-                  <p>
-                    متخصصون في الإستشارات الإدارية لجميع المشاريع داخل دول مجلس
-                    التعاون الخليجي
-                  </p>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={cardVariants}
+                  className="text"
+                >
+                  <h2>{Hero.slide1_title}</h2>
+                  <p>{Hero.slide1_desc}</p>
                   {/* <Link to={""}>اطلب الخدمة</Link>*/}
-                </div>
+                </motion.div>
               </AnimatedContent>
               <div className="img">
                 <img src={img1} alt="" />
@@ -191,11 +238,8 @@ function App() {
           <SwiperSlide>
             <div className="swipe-image">
               <div className="text">
-                <h2>لأن نجاح شركتك يبدأ بقرارات مدروسة</h2>
-                <p>
-                  متخصصون في الإستشارات الإدارية لجميع المشاريع داخل دول مجلس
-                  التعاون الخليجي
-                </p>
+                <h2>{Hero.slide2_title}</h2>
+                <p>{Hero.slide2_desc}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
@@ -206,11 +250,8 @@ function App() {
           <SwiperSlide>
             <div className="swipe-image">
               <div className="text">
-                <h2>إضمن الآن أفضل قرار استثماري لشركتك</h2>
-                <p>
-                  متخصصون في الإستشارات الإدارية لجميع المشاريع داخل دول مجلس
-                  التعاون الخليجي
-                </p>
+                <h2>{Hero.slide3_title}</h2>
+                <p>{Hero.slide3_desc}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
@@ -220,18 +261,15 @@ function App() {
           </SwiperSlide>
         </Swiper>
         <div className="bg-video">
-          <video id="hero-video" autoPlay loop muted playsInline>
-            <source src={heroVideo} type="video/mp4" />
+          <video id="hero_video" autoPlay loop muted playsInline>
+            <source src={Hero?.bg_videoUrl} type="video/mp4" />
           </video>
         </div>
       </main>
       <section>
         <header className="section-header">
-          <h1>نحن نقدم إستشارات إدارية ودراسات جدوى</h1>
-          <p>
-            بدأنا في 2010 ومستمرين في تقديم خدماتنا المميزة بافضل الأسعار في دول
-            مجلس التعاون الخليجي
-          </p>
+          <h1>{content.headerTitle}</h1>
+          <p>{content.headerDesc}</p>
         </header>
         <AnimatedContent delay={0.2} duration={1.2}>
           <Link to={"/feasibility-studies"} className="card">
@@ -241,8 +279,8 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>دراسات الجدوى</h1>
-              <p>نقدم خدمات دراسات الجدوى لجميع المشروعات داخل الخليج</p>
+              <h1>{content.card1Title}</h1>
+              <p>{content.card1Desc}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -254,8 +292,8 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>إستشارات إدارية</h1>
-              <p>نقوم بإدارة الملفات الخاصة بجميع المعاملات داخل الخليج</p>
+              <h1>{content.card2Title}</h1>
+              <p>{content.card2Desc}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -267,66 +305,66 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>إدارة الملفات</h1>
-              <p>نقوم بإدارة الملفات الخاصة بجميع المعاملات داخل الخليج</p>
+              <h1>{content.card3Title}</h1>
+              <p>{content.card3Desc}</p>
             </div>
           </Link>
         </AnimatedContent>
         <AnimatedContent delay={0.2} duration={1.2}>
           <div className="thoumbnail">
-            <img loading="lazy" src={video_img} alt="" />
+            <img loading="lazy" src={content.thumbnailUrl} alt="" />
             <div className="playbutton" to="#" onClick={handlePlayClick}>
               <span>{playVideo}</span>
             </div>
           </div>
         </AnimatedContent>
-        {isVideoVisible && (
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100vh",
-              backgroundColor: "rgba(0, 0, 0, 0.85)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 99999999,
-            }}
-            onClick={closeVideo}
-          >
-            <video
-              ref={videoRef}
-              // autoPlay
-              controls
-              // muted
-              // playsInline
-              style={{ maxWidth: "90%", maxHeight: "90%" }}
-            >
-              <source src={sharek} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            {/* Close button */}
-            <button
-              onClick={closeVideo}
-              style={{
-                position: "absolute",
-                top: "1.5rem",
-                right: "0rem",
-                fontSize: "2rem",
-                background: "none",
-                color: "#fff",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              &times;
-            </button>
-          </div>
-        )}
       </section>
+      {isVideoVisible && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.85)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 99999900099,
+          }}
+          onClick={closeVideo}
+        >
+          <video
+            ref={videoRef}
+            // autoPlay
+            controls
+            // muted
+            // playsInline
+            style={{ maxWidth: "90%", maxHeight: "90%" }}
+          >
+            <source src={content.videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Close button */}
+          <button
+            onClick={closeVideo}
+            style={{
+              position: "absolute",
+              top: "1.5rem",
+              right: "0rem",
+              fontSize: "2rem",
+              background: "none",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            &times;
+          </button>
+        </div>
+      )}
       {/* <div className="count">
         <AnimatedContent threshold={0.5} delay={0.2} duration={1.2}>
           <div className="numbers">
