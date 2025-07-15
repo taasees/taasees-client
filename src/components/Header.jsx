@@ -101,9 +101,7 @@ export default function Header() {
   }, []);
   async function getMenu() {
     try {
-      const response = await axios.get(
-        "/menu/"
-      );
+      const response = await axios.get("/menu/");
 
       if (response.status === 200 || response.status === 201) {
         const menuData = response.data.menu;
@@ -121,7 +119,6 @@ export default function Header() {
       console.error(error);
     }
   }
-  
 
   return (
     <header className={`main_header ${isScrolled ? "scrolled" : ""}`}>
@@ -201,7 +198,7 @@ export default function Header() {
       </nav>
 
       <Link to="/" className="logo">
-        <img src={logo} alt="logo" />
+        <img src={menuTxt.logoUrl || ""} alt="logo" />
       </Link>
 
       <div
