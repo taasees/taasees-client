@@ -216,7 +216,7 @@ export default function Header() {
       <div ref={sidebarRef} className={`side ${isSideOpen ? "show" : ""}`}>
         <div className="top">
           <Link to="/" className="logo">
-            <img src={logo} alt="logo" />
+            <img src={menuTxt.logoUrl || ""} alt="logo" />
           </Link>
           <div className="menu close" onClick={toggleSidebar}>
             {closeMenu}
