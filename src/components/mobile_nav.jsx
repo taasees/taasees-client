@@ -156,8 +156,19 @@ export default function Mobile_nav() {
       <path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z" />
     </svg>
   );
-  const savedMenu = localStorage.getItem("menuTxt");
-  const menuTxt = savedMenu ? JSON.parse(savedMenu) : {};
+  let menuTxt = {};
+
+  useEffect(() => {
+    try {
+      const savedMenu = localStorage.getItem("menuTxt");
+      if (savedMenu && savedMenu !== "undefined") {
+        menuTxt = JSON.parse(savedMenu);
+      }
+    } catch (err) {
+      console.warn("Failed to parse saved menuTxt from localStorage:", err);
+      menuTxt = {};
+    }
+  }, []);
   return (
     <nav className="mobile_nav">
       <ul>
