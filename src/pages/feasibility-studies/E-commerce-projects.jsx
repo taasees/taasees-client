@@ -33,19 +33,24 @@ export default function E_commerce_projects() {
     }
   };
 
-  const [menuTxt, setmenuTxt] = useState({});
+   const [menuTxt, setmenuTxt] = useState({});
+   const [paperwork, setpaperwork] = useState({});
 
-  useEffect(() => {
-    try {
-      const savedMenu = localStorage.getItem("menuTxt");
-      if (savedMenu && savedMenu !== "undefined") {
-        setmenuTxt(JSON.parse(savedMenu));
-      }
-    } catch (err) {
-      console.warn("Failed to parse saved menuTxt from localStorage:", err);
-      setmenuTxt({});
-    }
-  }, []);
+   useEffect(() => {
+     try {
+       const savedMenu = localStorage.getItem("menuTxt");
+       const savepaperwork = localStorage.getItem("paperwork");
+       if (savedMenu && savedMenu !== "undefined") {
+         setmenuTxt(JSON.parse(savedMenu));
+       }
+       if (savepaperwork && savepaperwork !== "undefined") {
+         setpaperwork(JSON.parse(savepaperwork));
+       }
+     } catch (err) {
+       console.warn("Failed to parse saved menuTxt from localStorage:", err);
+       setmenuTxt({});
+     }
+   }, []);
   return (
     <motion.div
       className="about-pages"
@@ -61,7 +66,7 @@ export default function E_commerce_projects() {
             {menuTxt.studies} {menuTxt.ecommerce}
           </h1>
         </AnimatedContent>
-        <img src={paperwork} alt="" />
+        <img src={paperwork.paperworkImage} alt="" />
       </div>
 
       <div className="slides">

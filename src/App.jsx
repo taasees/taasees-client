@@ -156,6 +156,8 @@ function App() {
         setContent(response.data.data);
         const response2 = await axios.get("/hero");
         setHero(response2.data.data);
+        const response3 = await axios.get("/paperwork");
+        localStorage.setItem("paperwork", JSON.stringify(response3.data.data));
       } catch (err) {
         setContent(null);
       } finally {
@@ -189,19 +191,25 @@ function App() {
       },
     }),
   };
-    const [menuTxt, setmenuTxt] = useState({});
-  
-    useEffect(() => {
-      try {
-        const savedMenu = localStorage.getItem("menuTxt");
-        if (savedMenu && savedMenu !== "undefined") {
-          setmenuTxt(JSON.parse(savedMenu));
-        }
-      } catch (err) {
-        console.warn("Failed to parse saved menuTxt from localStorage:", err);
-        setmenuTxt({});
+  const [menuTxt, setmenuTxt] = useState({});
+  const [paperwork, setpaperwork] = useState({});
+
+  useEffect(() => {
+    try {
+      const savedMenu = localStorage.getItem("menuTxt");
+      const savepaperwork = localStorage.getItem("paperwork");
+      if (savedMenu && savedMenu !== "undefined") {
+        setmenuTxt(JSON.parse(savedMenu));
       }
-    }, []);
+      if (savepaperwork && savepaperwork !== "undefined") {
+        setpaperwork(JSON.parse(savepaperwork));
+      }
+    } catch (err) {
+      console.warn("Failed to parse saved menuTxt from localStorage:", err);
+      setmenuTxt({});
+    }
+  }, []);
+
   return (
     <motion.div
       className="container"
@@ -532,9 +540,9 @@ function App() {
       </div>
 
       <div className="paperwork">
-        <img loading="lazy" src={paperwork} alt="" />
+        <img loading="lazy" src={paperwork?.paperworkImage} alt="" />
         <AnimatedContent threshold={0.3} delay={0.2} duration={1.2}>
-          <h2>نعرض عليكم اكثر الاسئلة شيوعاً من عملائنا الكرام</h2>
+          <h2>{paperwork.paperworkText}</h2>
         </AnimatedContent>
       </div>
       <div className="commonQuestion">
