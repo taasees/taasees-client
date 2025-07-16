@@ -198,7 +198,7 @@ export default function Header() {
       </nav>
 
       <Link to="/" className="logo">
-        <img src={menuTxt.logoUrl || ""} alt="logo" />
+        <img src={menuTxt.logoUrl || null} alt="logo" />
       </Link>
 
       <div
@@ -216,7 +216,7 @@ export default function Header() {
       <div ref={sidebarRef} className={`side ${isSideOpen ? "show" : ""}`}>
         <div className="top">
           <Link to="/" className="logo">
-            <img src={menuTxt.logoUrl || ""} alt="logo" />
+            <img src={menuTxt.logoUrl || null} alt="logo" />
           </Link>
           <div className="menu close" onClick={toggleSidebar}>
             {closeMenu}
@@ -227,7 +227,7 @@ export default function Header() {
           <nav>
             <ul dir="auto">
               <li>
-                <Link to="/">الرئيسية</Link>
+                <Link to="/">{menuTxt.home}</Link>
               </li>
 
               <div

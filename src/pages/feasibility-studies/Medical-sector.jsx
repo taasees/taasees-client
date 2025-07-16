@@ -32,8 +32,19 @@ export default function Medical_sector() {
       return [];
     }
   };
-  const savedMenu = localStorage.getItem("menuTxt");
-  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
+  const [menuTxt, setmenuTxt] = useState({});
+
+  useEffect(() => {
+    try {
+      const savedMenu = localStorage.getItem("menuTxt");
+      if (savedMenu && savedMenu !== "undefined") {
+        setmenuTxt(JSON.parse(savedMenu));
+      }
+    } catch (err) {
+      console.warn("Failed to parse saved menuTxt from localStorage:", err);
+      setmenuTxt({});
+    }
+  }, []);
   return (
     <motion.div
       className="about-pages"
@@ -45,7 +56,9 @@ export default function Medical_sector() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>دراسات جدوى {menuTxt.medical}</h1>
+          <h1>
+            {menuTxt.studies} {menuTxt.medical}
+          </h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>

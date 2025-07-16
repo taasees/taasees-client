@@ -156,7 +156,6 @@ function App() {
         setContent(response.data.data);
         const response2 = await axios.get("/hero");
         setHero(response2.data.data);
-        console.log(response2.data.data);
       } catch (err) {
         setContent(null);
       } finally {
@@ -190,6 +189,19 @@ function App() {
       },
     }),
   };
+    const [menuTxt, setmenuTxt] = useState({});
+  
+    useEffect(() => {
+      try {
+        const savedMenu = localStorage.getItem("menuTxt");
+        if (savedMenu && savedMenu !== "undefined") {
+          setmenuTxt(JSON.parse(savedMenu));
+        }
+      } catch (err) {
+        console.warn("Failed to parse saved menuTxt from localStorage:", err);
+        setmenuTxt({});
+      }
+    }, []);
   return (
     <motion.div
       className="container"
@@ -279,7 +291,7 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{content.card1Title}</h1>
+              <h1>{menuTxt.studies}</h1>
               <p>{content.card1Desc}</p>
             </div>
           </Link>
@@ -292,7 +304,7 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{content.card2Title}</h1>
+              <h1>{menuTxt.adminConsult}</h1>
               <p>{content.card2Desc}</p>
             </div>
           </Link>
@@ -305,7 +317,7 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{content.card3Title}</h1>
+              <h1>{menuTxt.filesMgmt}</h1>
               <p>{content.card3Desc}</p>
             </div>
           </Link>

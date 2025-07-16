@@ -32,8 +32,19 @@ export default function Files_management() {
       return [];
     }
   };
-  const savedMenu = localStorage.getItem("menuTxt");
-  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
+ const [menuTxt, setmenuTxt] = useState({});
+
+  useEffect(() => {
+    try {
+      const savedMenu = localStorage.getItem("menuTxt");
+      if (savedMenu && savedMenu !== "undefined") {
+        setmenuTxt(JSON.parse(savedMenu));
+      }
+    } catch (err) {
+      console.warn("Failed to parse saved menuTxt from localStorage:", err);
+      setmenuTxt({});
+    }
+  }, []);
   return (
     <motion.div
       className="about-pages"

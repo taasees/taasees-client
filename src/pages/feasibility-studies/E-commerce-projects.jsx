@@ -33,8 +33,19 @@ export default function E_commerce_projects() {
     }
   };
 
-  const savedMenu = localStorage.getItem("menuTxt");
-  const menuTxt = savedMenu ? JSON.parse(savedMenu) : null;
+  const [menuTxt, setmenuTxt] = useState({});
+
+  useEffect(() => {
+    try {
+      const savedMenu = localStorage.getItem("menuTxt");
+      if (savedMenu && savedMenu !== "undefined") {
+        setmenuTxt(JSON.parse(savedMenu));
+      }
+    } catch (err) {
+      console.warn("Failed to parse saved menuTxt from localStorage:", err);
+      setmenuTxt({});
+    }
+  }, []);
   return (
     <motion.div
       className="about-pages"
@@ -46,7 +57,9 @@ export default function E_commerce_projects() {
     >
       <div className="headerimg">
         <AnimatedContent delay={0.2} threshold={0} duration={2}>
-          <h1>دراسات جدوى {menuTxt.ecommerce}</h1>
+          <h1>
+            {menuTxt.studies} {menuTxt.ecommerce}
+          </h1>
         </AnimatedContent>
         <img src={paperwork} alt="" />
       </div>
