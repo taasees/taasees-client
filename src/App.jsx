@@ -157,6 +157,9 @@ function App() {
         const response2 = await axios.get("/hero");
         setHero(response2.data.data);
         const response3 = await axios.get("/paperwork");
+        if (localStorage.getItem("paperwork")) {
+          localStorage.setItem("paperwork", null);
+        }
         localStorage.setItem("paperwork", JSON.stringify(response3.data.data));
       } catch (err) {
         setContent(null);
