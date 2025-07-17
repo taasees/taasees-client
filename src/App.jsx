@@ -149,6 +149,8 @@ function App() {
     setIsVideoVisible(false);
   };
   const [Hero, setHero] = useState({});
+  const [feedbacks, setFeedbacks] = useState([]);
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -161,6 +163,8 @@ function App() {
           localStorage.setItem("paperwork", null);
         }
         localStorage.setItem("paperwork", JSON.stringify(response3.data.data));
+        const res = await axios.get("/feedbacks");
+        setFeedbacks(res.data);
       } catch (err) {
         setContent(null);
       } finally {
@@ -291,8 +295,8 @@ function App() {
       </main>
       <section>
         <header className="section-header">
-          <h1>{content.headerTitle}</h1>
-          <p>{content.headerDesc}</p>
+          <h1>{content.headerTitle || ""}</h1>
+          <p>{content.headerDesc || ""}</p>
         </header>
         <AnimatedContent delay={0.2} duration={1.2}>
           <Link to={"/feasibility-studies"} className="card">
@@ -302,8 +306,8 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{menuTxt.studies}</h1>
-              <p>{content.card1Desc}</p>
+              <h1>{menuTxt.studies || ""}</h1>
+              <p>{content.card1Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -315,8 +319,8 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{menuTxt.adminConsult}</h1>
-              <p>{content.card2Desc}</p>
+              <h1>{menuTxt.adminConsult || ""}</h1>
+              <p>{content.card2Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -328,8 +332,8 @@ function App() {
               </video>
             </div>
             <div className="text">
-              <h1>{menuTxt.filesMgmt}</h1>
-              <p>{content.card3Desc}</p>
+              <h1>{menuTxt.filesMgmt || ""}</h1>
+              <p>{content.card3Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -449,96 +453,35 @@ function App() {
               slidesPerView: 3, // 👈 from 768px and up (desktop/tablet)
             },
           }}
-          // autoplay={{
-          //   delay: 4500,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 4500,
+            disableOnInteraction: false,
+          }}
           speed={1500}
           navigation={true}
           pagination={{ clickable: true }}
           modules={[Autoplay, Navigation, Pagination]}
           className="feedbackSwiper"
         >
-          <SwiperSlide>
-            <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-              <div className="feedBack-text">
-                <p>
-                  “ما نستطيع قوله بشأن ادارة شركة شارِك في اختيار فريق عمل
-                  متكامل حقق لي العديد من الخدمات والإستشارات وعدد ٢ دراسة جدوى
-                  لمشروعات خاصة بي حقا ما يميز هذه الشركة هو قدرتهم على الادارة
-                  المتميزة التي حققت المعادلة بين الأسعار المناسبة والجودة
-                  المطلوبة. شكرا لكم”
-                </p>
+          {feedbacks.map((item, i) => (
+            <SwiperSlide key={i}>
+              <motion.div
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={cardVariants}
+                className="feedBack-text"
+              >
+                <p>{item.text}</p>
                 <span className="person">
-                  <p className="name">فاطمة المري</p>
-                  <p className="job">صاحب المشروع</p>
+                  <p className="name">{item.name}</p>
+
+                  <p className="job">{item.job}</p>
                 </span>
-              </div>
-            </AnimatedContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-              <div className="feedBack-text">
-                <p>
-                  “كنت ابحث عن شركة تقوم بإعداد دراسة جدوى لمشروع مصنع هياكل
-                  حديدية واخبرني اخوي بان اقوم بعمل دراسة الجدوى من خلال شركة
-                  شارِك للإستشارات واستلمت دراسة جدوى للمشروع وحصلت على الموافقة
-                  بدون أي تعديلات بفضل الله”
-                </p>
-                <span className="person">
-                  <p className="name">عبد العزيز الكواري</p>
-                  <p className="job">رائد اعمال</p>
-                </span>
-              </div>
-            </AnimatedContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-              <div className="feedBack-text">
-                <p>
-                  “كانت شركة شارِك للإستشارات سببا في تغيير مستقبلي حيث قمت من
-                  خلالهم بطلب خدمة دراسة جدوى وبالفعل حصلت على دراسة الجدوى
-                  للمشروع وبالفعل كانت النتائج الحمد لله مرضية”
-                </p>
-                <span className="person">
-                  <p className="name">احمد المعاضيد</p>
-                  <p className="job">رائد اعمال</p>
-                </span>
-              </div>
-            </AnimatedContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-              <div className="feedBack-text">
-                <p>
-                  “ما نستطيع قوله بشأن ادارة شركة شارِك في اختيار فريق عمل
-                  متكامل حقق لي العديد من الخدمات والإستشارات وعدد ٢ دراسة جدوى
-                  لمشروعات خاصة بي حقا ما يميز هذه الشركة هو قدرتهم على الادارة
-                  المتميزة التي حققت المعادلة بين الأسعار المناسبة والجودة
-                  المطلوبة. شكرا لكم”
-                </p>
-                <span className="person">
-                  <p className="name">محمد الهاجري</p>
-                  <p className="job">رجل أعمال</p>
-                </span>
-              </div>
-            </AnimatedContent>
-          </SwiperSlide>
-          <SwiperSlide>
-            <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-              <div className="feedBack-text">
-                <p>
-                  “ان صدق التعامل في الوقت والدقة للمشروع الذي قمت بإعداد دراسة
-                  جدوى لدى شركة شارِك للإستشارات هو ما جعلني استمر معهم في
-                  العديد من الإستشارات الاخرى لمشاريعي”
-                </p>
-                <span className="person">
-                  <p className="name">ناصر الدوسري</p>
-                  <p className="job">رجل أعمال</p>
-                </span>
-              </div>
-            </AnimatedContent>
-          </SwiperSlide>
+              </motion.div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 

@@ -51,6 +51,7 @@ export default function E_commerce_projects() {
        setmenuTxt({});
      }
    }, []);
+  
   return (
     <motion.div
       className="about-pages"
