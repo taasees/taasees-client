@@ -27,6 +27,7 @@ import { motion } from "framer-motion";
 import axios from "./axiosInstance";
 function App() {
   const [aboutCards, setAboutCards] = useState([]);
+  const [showFeedback, setShowFeedback] = useState(null);
 
   const [selectedFont, setSelectedFont] = useState("arabic_bold_1");
   useEffect(() => {
@@ -163,6 +164,10 @@ function App() {
           localStorage.setItem("paperwork", null);
         }
         localStorage.setItem("paperwork", JSON.stringify(response3.data.data));
+        //
+        const res2 = await axios.get("/ui");
+        setShowFeedback(res2.data.showFeedback);
+
         const res = await axios.get("/feedbacks");
         setFeedbacks(res.data);
       } catch (err) {
@@ -251,7 +256,7 @@ function App() {
                   variants={cardVariants}
                   className="text"
                 >
-                  <h2>{Hero.slide1_title}</h2>
+                  <h2>{Hero.slide1_title || ""}</h2>
                   <p>{Hero.slide1_desc}</p>
                   {/* <Link to={""}>اطلب الخدمة</Link>*/}
                 </motion.div>
@@ -265,8 +270,8 @@ function App() {
           <SwiperSlide>
             <div className="swipe-image">
               <div className="text">
-                <h2>{Hero.slide2_title}</h2>
-                <p>{Hero.slide2_desc}</p>
+                <h2>{Hero.slide2_title || ""}</h2>
+                <p>{Hero.slide2_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
@@ -277,8 +282,8 @@ function App() {
           <SwiperSlide>
             <div className="swipe-image">
               <div className="text">
-                <h2>{Hero.slide3_title}</h2>
-                <p>{Hero.slide3_desc}</p>
+                <h2>{Hero.slide3_title || ""}</h2>
+                <p>{Hero.slide3_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
               <div className="img">
@@ -295,8 +300,8 @@ function App() {
       </main>
       <section>
         <header className="section-header">
-          <h1>{content.headerTitle || ""}</h1>
-          <p>{content.headerDesc || ""}</p>
+          <h1>{content?.headerTitle || ""}</h1>
+          <p>{content?.headerDesc || ""}</p>
         </header>
         <AnimatedContent delay={0.2} duration={1.2}>
           <Link to={"/feasibility-studies"} className="card">
@@ -307,7 +312,7 @@ function App() {
             </div>
             <div className="text">
               <h1>{menuTxt.studies || ""}</h1>
-              <p>{content.card1Desc || ""}</p>
+              <p>{content?.card1Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -320,7 +325,7 @@ function App() {
             </div>
             <div className="text">
               <h1>{menuTxt.adminConsult || ""}</h1>
-              <p>{content.card2Desc || ""}</p>
+              <p>{content?.card2Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -333,7 +338,7 @@ function App() {
             </div>
             <div className="text">
               <h1>{menuTxt.filesMgmt || ""}</h1>
-              <p>{content.card3Desc || ""}</p>
+              <p>{content?.card3Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
@@ -435,55 +440,62 @@ function App() {
           </div>
         </AnimatedContent>
       </div> */}
-      <div className="feedback">
-        <AnimatedContent threshold={0.7} delay={0.2} duration={1.2}>
-          <header className="feedback-header">
+      {showFeedback && (
+        <div className="feedback">
+          <motion.header
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={cardVariants}
+            className="feedback-header"
+          >
             <span>آراء العملاء</span>
             <h3>شبكتنا مليئة بالعملاء ذو التجارب الناجحة</h3>
-          </header>
-        </AnimatedContent>
-        <Swiper
-          dir="rtl"
-          rewind={true}
-          spaceBetween={30}
-          centeredSlides={true}
-          slidesPerView={1} // 👈 default for mobile
-          breakpoints={{
-            768: {
-              slidesPerView: 3, // 👈 from 768px and up (desktop/tablet)
-            },
-          }}
-          autoplay={{
-            delay: 4500,
-            disableOnInteraction: false,
-          }}
-          speed={1500}
-          navigation={true}
-          pagination={{ clickable: true }}
-          modules={[Autoplay, Navigation, Pagination]}
-          className="feedbackSwiper"
-        >
-          {feedbacks.map((item, i) => (
-            <SwiperSlide key={i}>
-              <motion.div
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={cardVariants}
-                className="feedBack-text"
-              >
-                <p>{item.text}</p>
-                <span className="person">
-                  <p className="name">{item.name}</p>
+          </motion.header>
 
-                  <p className="job">{item.job}</p>
-                </span>
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+          <Swiper
+            dir="rtl"
+            rewind={true}
+            spaceBetween={30}
+            centeredSlides={true}
+            slidesPerView={1} // 👈 default for mobile
+            breakpoints={{
+              768: {
+                slidesPerView: 3, // 👈 from 768px and up (desktop/tablet)
+              },
+            }}
+            autoplay={{
+              delay: 4500,
+              disableOnInteraction: false,
+            }}
+            speed={1500}
+            navigation={true}
+            pagination={{ clickable: true }}
+            modules={[Autoplay, Navigation, Pagination]}
+            className="feedbackSwiper"
+          >
+            {feedbacks.map((item, i) => (
+              <SwiperSlide key={i}>
+                <motion.div
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={cardVariants}
+                  className="feedBack-text"
+                >
+                  <p>{item.text}</p>
+                  <span className="person">
+                    <p className="name">{item.name}</p>
+
+                    <p className="job">{item.job}</p>
+                  </span>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
 
       <div className="paperwork">
         <img loading="lazy" src={paperwork?.paperworkImage} alt="" />
