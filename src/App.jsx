@@ -86,6 +86,14 @@ function App() {
           Object.entries(fetchedColors).forEach(([key, val]) => {
             document.documentElement.style.setProperty(key, val);
           });
+           const metaTag = document.querySelector('meta[name="theme-color"]');
+           const primaryClr = getComputedStyle(document.documentElement)
+             .getPropertyValue("--primary-clr")
+             .trim();
+
+           if (metaTag && primaryClr) {
+             metaTag.setAttribute("content", primaryClr);
+           }
         }
       } catch (err) {
         console.error("Error fetching colors:", err);
@@ -189,14 +197,7 @@ function App() {
         setFeedbacks(res.data);
 
 
-         const metaTag = document.querySelector('meta[name="theme-color"]');
-         const primaryClr = getComputedStyle(document.documentElement)
-           .getPropertyValue("--primary-clr")
-           .trim();
-
-         if (metaTag && primaryClr) {
-           metaTag.setAttribute("content", primaryClr);
-         }
+        
       } catch (err) {
         setContent(null);
       } finally {
