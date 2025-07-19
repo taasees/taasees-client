@@ -237,6 +237,11 @@ body .container .hero .mySwiper .swiper-slide .swipe-image .img img {
   -o-object-fit: cover;
      object-fit: cover;
 }
+body .container .hero .mySwiper .swiper-slide .swipe-image:not(:has(.img)) .text {
+  width: clamp(300px, 100%, 1500px);
+  min-height: 60vh;
+  text-align: center;
+}
 body .container section {
   width: 100%;
   padding-inline: 1rem;

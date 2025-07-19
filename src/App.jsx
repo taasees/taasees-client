@@ -29,7 +29,25 @@ function App() {
   const [aboutCards, setAboutCards] = useState([]);
   const [showFeedback, setShowFeedback] = useState(null);
 
-  const [selectedFont, setSelectedFont] = useState("arabic_bold_1");
+  // Helper to parse gradient string
+  const parseGradient = (gradientStr) => {
+    try {
+      const prefix = "linear-gradient(";
+      if (!gradientStr.startsWith(prefix)) return null;
+
+      const inner = gradientStr.slice(prefix.length, -1); // remove prefix and trailing ')'
+      const parts = inner.split(",");
+      const anglePart = parts[0].trim(); // e.g. "45deg"
+      const stops = parts.slice(1).map((s) => s.trim().split(" ")[0]); // get colors only
+
+      const angle = parseInt(anglePart.replace("deg", ""), 10);
+      if (isNaN(angle)) return null;
+
+      return { angle, stops };
+    } catch {
+      return null;
+    }
+  };
   useEffect(() => {
     // Fetch latest saved font from server
     const fetchFont = async () => {
@@ -38,7 +56,6 @@ function App() {
           "https://shark-consulting-net.onrender.com/fonts/latest"
         );
         const { fontFamily, fontStyles } = res.data;
-        setSelectedFont(fontFamily);
         document.documentElement.style.setProperty(
           "--arabic-fm-r",
           fontStyles.regular
@@ -57,6 +74,25 @@ function App() {
     };
 
     fetchFont();
+  }, []);
+  useEffect(() => {
+    const fetchColors = async () => {
+      try {
+        const res = await axios.get(
+          "https://shark-consulting-net.onrender.com/colors/"
+        );
+        if (res.status === 200 && res.data?.colors) {
+          const fetchedColors = res.data.colors;
+          Object.entries(fetchedColors).forEach(([key, val]) => {
+            document.documentElement.style.setProperty(key, val);
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching colors:", err);
+      }
+    };
+
+    fetchColors();
   }, []);
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -109,28 +145,8 @@ function App() {
         setAboutCards(normalized);
       }
     });
-    // const fetchContent = async () => {
-    //   try {
-    //     const response = await axios.get("/textContent");
-    //     setContent(response.data.data);
-    //     console.log(response.data.data);
-    //   } catch (err) {
-    //     setError(err.response?.data?.error || err.message);
-    //     setContent(null);
-    //   }
-    // };
-
-    // fetchContent();
   }, []);
 
-  // useEffect(() => {
-  //   const video = document.getElementById("hero-video");
-  //   if (video) {
-  //     video.play().catch((err) => {
-  //       console.warn("Autoplay failed:", err);
-  //     });
-  //   }
-  // }, []);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const videoRef = useRef(null);
 
@@ -158,6 +174,7 @@ function App() {
         const response = await axios.get("/textContent");
         setContent(response.data.data);
         const response2 = await axios.get("/hero");
+        console.log(response2.data.data);
         setHero(response2.data.data);
         const response3 = await axios.get("/paperwork");
         if (localStorage.getItem("paperwork")) {
@@ -261,9 +278,11 @@ function App() {
                   {/* <Link to={""}>اطلب الخدمة</Link>*/}
                 </motion.div>
               </AnimatedContent>
-              <div className="img">
-                <img src={img1} alt="" />
-              </div>
+              {Hero?.slide1_visible && (
+                <div className="img">
+                  <img src={Hero.slide1_imageUrl} alt="" />
+                </div>
+              )}
             </div>
           </SwiperSlide>
 
@@ -274,9 +293,11 @@ function App() {
                 <p>{Hero.slide2_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
-              <div className="img">
-                <img src={img2} alt="" />
-              </div>
+              {Hero?.slide2_visible && (
+                <div className="img">
+                  <img src={Hero.slide2_imageUrl} alt="" />
+                </div>
+              )}
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -286,9 +307,11 @@ function App() {
                 <p>{Hero.slide3_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
-              <div className="img">
-                <img src={img3} alt="" />
-              </div>
+              {Hero?.slide3_visible && (
+                <div className="img">
+                  <img src={Hero.slide3_imageUrl} alt="" />
+                </div>
+              )}
             </div>
           </SwiperSlide>
         </Swiper>
@@ -344,7 +367,7 @@ function App() {
         </AnimatedContent>
         <AnimatedContent delay={0.2} duration={1.2}>
           <div className="thoumbnail">
-            <img loading="lazy" src={content.thumbnailUrl} alt="" />
+            <img loading="lazy" src={content?.thumbnailUrl || null} alt="" />
             <div className="playbutton" to="#" onClick={handlePlayClick}>
               <span>{playVideo}</span>
             </div>

@@ -103,6 +103,13 @@ body {
                 object-fit: cover;
               }
             }
+            &:not(:has(.img)) {
+              .text {
+                width: clamp(300px, 100%, 1500px);
+                min-height: 60vh;
+                text-align: center;
+              }
+            }
           }
         }
       }
