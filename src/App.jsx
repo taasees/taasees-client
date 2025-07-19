@@ -187,6 +187,16 @@ function App() {
 
         const res = await axios.get("/feedbacks");
         setFeedbacks(res.data);
+
+
+         const metaTag = document.querySelector('meta[name="theme-color"]');
+         const primaryClr = getComputedStyle(document.documentElement)
+           .getPropertyValue("--primary-clr")
+           .trim();
+
+         if (metaTag && primaryClr) {
+           metaTag.setAttribute("content", primaryClr);
+         }
       } catch (err) {
         setContent(null);
       } finally {
