@@ -238,15 +238,7 @@ function App() {
       setmenuTxt({});
     }
   }, []);
-useEffect(() => {
-  const primaryClr = getComputedStyle(document.documentElement)
-    .getPropertyValue("--primary-clr")
-    .trim();
-  const metaTag = document.querySelector('meta[name="theme-color"]');
-  if (metaTag && primaryClr) {
-    metaTag.setAttribute("content", primaryClr);
-  }
-}, []);
+
 
   return (
     <motion.div
