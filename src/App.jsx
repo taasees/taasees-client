@@ -86,14 +86,14 @@ function App() {
           Object.entries(fetchedColors).forEach(([key, val]) => {
             document.documentElement.style.setProperty(key, val);
           });
-           const metaTag = document.querySelector('meta[name="theme-color"]');
-           const primaryClr = getComputedStyle(document.documentElement)
-             .getPropertyValue("--primary-clr")
-             .trim();
+          const metaTag = document.querySelector('meta[name="theme-color"]');
+          const primaryClr = getComputedStyle(document.documentElement)
+            .getPropertyValue("--primary-clr")
+            .trim();
 
-           if (metaTag && primaryClr) {
-             metaTag.setAttribute("content", primaryClr);
-           }
+          if (metaTag && primaryClr) {
+            metaTag.setAttribute("content", primaryClr);
+          }
         }
       } catch (err) {
         console.error("Error fetching colors:", err);
@@ -194,11 +194,7 @@ function App() {
 
         const res = await axios.get("/feedbacks");
         setFeedbacks(res.data);
-
-
-        
       } catch (err) {
-        setContent(null);
       } finally {
         setTimeout(() => {
           const videoEl = document.getElementById("hero_video");
@@ -248,7 +244,6 @@ function App() {
       setmenuTxt({});
     }
   }, []);
-
 
   return (
     <motion.div
@@ -346,7 +341,7 @@ function App() {
             </div>
             <div className="text">
               <h1>{menuTxt.studies || ""}</h1>
-              <p>{content?.card1Desc || ""}</p>
+              <p>{content.card1Desc || ""}</p>
             </div>
           </Link>
         </AnimatedContent>
