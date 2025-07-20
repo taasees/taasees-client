@@ -284,7 +284,7 @@ function App() {
                   {/* <Link to={""}>اطلب الخدمة</Link>*/}
                 </motion.div>
               </AnimatedContent>
-              {Hero?.slide1_visible && (
+              {Hero.slide1_visible && (
                 <div className="img">
                   <img src={Hero.slide1_imageUrl} alt="" />
                 </div>
@@ -299,7 +299,7 @@ function App() {
                 <p>{Hero.slide2_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
-              {Hero?.slide2_visible && (
+              {Hero.slide2_visible && (
                 <div className="img">
                   <img src={Hero.slide2_imageUrl} alt="" />
                 </div>
@@ -313,7 +313,7 @@ function App() {
                 <p>{Hero.slide3_desc || ""}</p>
                 {/* <Link to={""}>اطلب الخدمة</Link> */}
               </div>
-              {Hero?.slide3_visible && (
+              {Hero.slide3_visible && (
                 <div className="img">
                   <img src={Hero.slide3_imageUrl} alt="" />
                 </div>
@@ -323,7 +323,7 @@ function App() {
         </Swiper>
         <div className="bg-video">
           <video id="hero_video" autoPlay loop muted playsInline>
-            <source src={Hero?.bg_videoUrl} type="video/mp4" />
+            <source src={Hero.bg_videoUrl} type="video/mp4" />
           </video>
         </div>
       </main>
