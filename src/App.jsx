@@ -53,7 +53,7 @@ function App() {
     const fetchFont = async () => {
       try {
         const res = await axios.get(
-          "https://shark-consulting-net.onrender.com/fonts/latest"
+          "https://taasees-server.onrender.com/fonts/latest"
         );
         const { fontFamily, fontStyles } = res.data;
         document.documentElement.style.setProperty(
@@ -79,7 +79,7 @@ function App() {
     const fetchColors = async () => {
       try {
         const res = await axios.get(
-          "https://shark-consulting-net.onrender.com/colors/"
+          "https://taasees-server.onrender.com/colors/"
         );
         if (res.status === 200 && res.data?.colors) {
           const fetchedColors = res.data.colors;
@@ -133,7 +133,7 @@ function App() {
   const fetchAboutByCategory = async () => {
     try {
       const response = await axios.get(
-        `https://shark-consulting-net.onrender.com/question`
+        `https://taasees-server.onrender.com/question`
       );
       return response.data; // expecting array of about cards
     } catch (err) {

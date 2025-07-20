@@ -30,7 +30,7 @@ export default function Previous_works() {
   const fetchAboutByCategory = async (category) => {
     try {
       const response = await axios.get(
-        `https://shark-consulting-net.onrender.com/category/${category}`
+        `https://taasees-server.onrender.com/category/${category}`
       );
       return response.data; // expecting array of about cards
     } catch (err) {

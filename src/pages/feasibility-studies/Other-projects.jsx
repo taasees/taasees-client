@@ -24,7 +24,7 @@ export default function Other_projects() {
   const fetchSlidesByCategory = async (category) => {
     try {
       const response = await axios.get(
-        `https://shark-consulting-net.onrender.com/slides/category/${category}`
+        `https://taasees-server.onrender.com/slides/category/${category}`
       );
       return response.data; // slides array
     } catch (err) {
