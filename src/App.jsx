@@ -182,7 +182,6 @@ function App() {
         const response = await axios.get("/textContent");
         setContent(response.data.data);
         const response2 = await axios.get("/hero");
-        console.log(response2.data.data);
         setHero(response2.data.data);
         const response3 = await axios.get("/paperwork");
         if (localStorage.getItem("paperwork")) {
