@@ -162,6 +162,7 @@ body {
           }
         }
         .text {
+          width: 100%;
           position: relative;
           @include flex(center, center, column, 1.5rem);
           text-align: center;
