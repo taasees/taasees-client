@@ -73,7 +73,7 @@ body {
               @include flex(flex-start, center, column, 1rem);
               h2,
               p {
-                width: fit-content;
+                width: 100%;
                 color: var(--txt-clr-light);
               }
               h2 {
