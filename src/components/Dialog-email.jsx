@@ -66,7 +66,7 @@ export default function Dialog() {
     try {
       const response = await axios.post(
         // "http://localhost:5005/email/send",
-        "https://shark-consulting-net.onrender.com/email/send",
+        "https://taasees-server.onrender.com/email/send",
 
         formData
       );
