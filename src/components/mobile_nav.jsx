@@ -169,6 +169,7 @@ export default function Mobile_nav() {
       setmenuTxt({});
     }
   }, []);
+  
   return (
     <nav className="mobile_nav">
       <ul>

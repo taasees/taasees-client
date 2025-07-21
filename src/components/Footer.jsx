@@ -58,17 +58,17 @@ export default function Footer() {
               <ul>
                 <li>
                   <Link to={"/feasibility-studies"}>
-                    {menuTxt.studies || ""}
+                    {menuTxt.studies}
                   </Link>
                 </li>
                 <li>
                   <Link to={"/Administrational-consultations"}>
-                    {menuTxt.adminConsult || ""}
+                    {menuTxt.adminConsult}
                   </Link>
                 </li>
                 <li>
                   <Link to={"/files-management"}>
-                    {menuTxt.filesMgmt || ""}
+                    {menuTxt.filesMgmt}
                   </Link>
                 </li>
               </ul>
